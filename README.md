@@ -1,1 +1,1 @@
-# terraform-aws-module-aurora-mysql
+# terraform-aws-module-rds-aurora
