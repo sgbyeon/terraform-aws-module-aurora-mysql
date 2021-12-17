@@ -6,8 +6,8 @@ variable "region" {
 
 variable "account_id" {
   description = "List of Allowed AWS account IDs"
-  type = list(string)
-  default = [""]
+  type = string
+  default = ""
 }
 
 variable "prefix" {
