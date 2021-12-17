@@ -16,7 +16,7 @@ resource "aws_rds_cluster" "this" {
 
   deletion_protection = var.deletion_protection
   skip_final_snapshot = var.skip_final_snapshot
-  kms_key_id = var.kms_key_id
+  kms_key_id = format("arn:aws:kms:%s:%s:key/%s", var.region, var.account_id, var.kms_key_id)
   storage_encrypted = var.storage_encrypted
 
   depends_on = [
