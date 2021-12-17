@@ -1,5 +1,6 @@
 resource "aws_rds_cluster" "this" {
   cluster_identifier = format("%s-%s", var.prefix, var.cluster_name)
+  db_subnet_group_name = aws_db_subnet_group.this.name
 
   engine = var.engine
   engine_version = var.engine_version
@@ -31,6 +32,7 @@ resource "aws_rds_cluster_instance" "this" {
 
   identifier = format("%s-%s-%s", var.prefix, var.cluster_name, "${count.index}")
   cluster_identifier = aws_rds_cluster.this.id
+  db_subnet_group_name = aws_db_subnet_group.this.name
 
   instance_class = var.instance_class
 
