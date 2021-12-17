@@ -100,6 +100,17 @@ variable "skip_final_snapshot" {
   type = bool
 }
 
+variable "kms_key_id" {
+  description = "kms key"
+  type = string
+}
+
+variable "storage_encrypted" {
+  description = "aurora rds encrypted using kms"
+  type = bool
+  default = true
+}
+
 variable "tags" {
   description = "tag map"
   type = map(string)
