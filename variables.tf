@@ -75,7 +75,7 @@ variable "preferred_maintenance_window" {
   type = string
 }
 
-variable "subnet_list" {
+variable "subnet_ids" {
   description = "Subnet list for RDS Aurora"
   type = list(string)
 }

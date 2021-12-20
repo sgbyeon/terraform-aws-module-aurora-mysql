@@ -8,7 +8,7 @@ output "region" {
   value = var.region
 }
 
-output "subnet_list" {
+output "subnet_ids" {
   description = "RDS Aurora Subnet List"
   value = aws_db_subnet_group.this.subnet_ids
 }
