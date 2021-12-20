@@ -8,6 +8,13 @@ resource "aws_rds_cluster" "this" {
 
   availability_zones = var.azs
 
+  lifecycle {
+    create_before_destroy = true
+    ignore_changes = [
+      availability_zones
+    ]
+  }
+
   database_name = var.database_name
   master_username = var.master_username
   master_password = var.master_password
