@@ -27,7 +27,7 @@ resource "aws_rds_cluster" "this" {
   kms_key_id = format("arn:aws:kms:%s:%s:key/%s", var.region, var.account_id, var.kms_key_id)
   storage_encrypted = var.storage_encrypted
 
-  vpc_security_group_ids = aws_security_group.this.*.id
+  vpc_security_group_ids = compact(aws_security_group.this.*.id)
 
   depends_on = [
     aws_db_subnet_group.this,
