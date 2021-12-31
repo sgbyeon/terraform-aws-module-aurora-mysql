@@ -1,5 +1,5 @@
 resource "aws_rds_cluster" "this" {
-  cluster_identifier = format("%s-%s", var.prefix, var.cluster_name)
+  cluster_identifier = format("%s.%s", var.prefix, var.cluster_name)
   db_subnet_group_name = aws_db_subnet_group.this.name
 
   engine = var.engine
@@ -31,13 +31,13 @@ resource "aws_rds_cluster" "this" {
     aws_db_subnet_group.this
   ]
 
-  tags = merge(var.tags, tomap({Name = format("%s-%s-rds", var.prefix, var.cluster_name)}))
+  tags = merge(var.tags, tomap({Name = format("%s.%s.aurora", var.prefix, var.cluster_name)}))
 }
 
 resource "aws_rds_cluster_instance" "this" {
   count = var.replica_count
 
-  identifier = format("%s-%s-%s", var.prefix, var.cluster_name, "${count.index}")
+  identifier = format("%s.%s.aurora-%s", var.prefix, var.cluster_name, "${count.index}")
   cluster_identifier = aws_rds_cluster.this.id
   db_subnet_group_name = aws_db_subnet_group.this.name
 
@@ -46,7 +46,7 @@ resource "aws_rds_cluster_instance" "this" {
   engine = aws_rds_cluster.this.engine
   engine_version = aws_rds_cluster.this.engine_version
 
-  tags = merge(var.tags, tomap({Name = format("%s-%s-%s", var.prefix, var.cluster_name, "${count.index}")}))
+  tags = merge(var.tags, tomap({Name = format("%s.%s.aurora-%s", var.prefix, var.cluster_name, "${count.index}")}))
 
   depends_on = [
     aws_rds_cluster.this
@@ -54,8 +54,8 @@ resource "aws_rds_cluster_instance" "this" {
 }
 
 resource "aws_db_subnet_group" "this" {
-  name = format("%s-%s-sn", var.prefix, var.cluster_name)
+  name = format("%s.%s.aurora.subnet-groups", var.prefix, var.cluster_name)
   subnet_ids = var.subnet_ids
 
-  tags = merge(var.tags, tomap({Name = format("%s-%s-sn", var.prefix, var.cluster_name)}))
+  tags = merge(var.tags, tomap({Name = format("%s.%s.aurora.subnet-groups", var.prefix, var.cluster_name)}))
 }
