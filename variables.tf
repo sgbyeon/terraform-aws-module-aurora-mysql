@@ -118,8 +118,7 @@ variable "tags" {
 
 variable "cidr" {
   description = "The CIDR block to accept"
-  type = string
-  default = ""
+  type = list(string)
 }
 
 variable "vpc_id" {
