@@ -115,3 +115,15 @@ variable "tags" {
   description = "tag map"
   type = map(string)
 }
+
+variable "cidr" {
+  description = "The CIDR block to accept"
+  type = string
+  default = ""
+}
+
+variable "security_group_name" {
+  description = "The name of the security group to authorize"
+  type = string
+  default = ""
+}
