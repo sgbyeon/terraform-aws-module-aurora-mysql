@@ -1,5 +1,5 @@
 resource "aws_db_security_group" "this" {
-  name = format("%s.%s.aurora.security-groups", var.prefix, var.cluster_name)
+  name = format("%s-%s-aurora-security-groups", var.prefix, var.cluster_name)
 
   ingress {
     cidr = var.cidr
