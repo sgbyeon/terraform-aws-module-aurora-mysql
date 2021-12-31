@@ -1,5 +1,5 @@
 resource "aws_rds_cluster" "this" {
-  cluster_identifier = format("%s-%s", var.prefix, var.cluster_name)
+  cluster_identifier = format("%s-%s-aurora", var.prefix, var.cluster_name)
   db_subnet_group_name = aws_db_subnet_group.this.name
 
   engine = var.engine
