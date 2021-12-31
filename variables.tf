@@ -121,9 +121,3 @@ variable "cidr" {
   type = string
   default = ""
 }
-
-variable "security_group_name" {
-  description = "The name of the security group to authorize"
-  type = string
-  default = ""
-}
