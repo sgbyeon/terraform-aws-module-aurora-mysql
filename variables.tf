@@ -120,4 +120,9 @@ variable "cidr" {
   description = "The CIDR block to accept"
   type = string
   default = ""
+
+variable "vpc_id" {
+  description = "vpc id"
+  type = string
+}
 }
